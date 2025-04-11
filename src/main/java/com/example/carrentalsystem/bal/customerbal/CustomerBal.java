@@ -29,6 +29,7 @@ public class CustomerBal {
         if(checkCustomerID(customerID)){
         customerDAO.removeCustomer(customerID);
         }
+        else return;
     }
 
     public List<Customer> listCustomerBal() throws SQLException, ClassNotFoundException {
@@ -40,9 +41,25 @@ public class CustomerBal {
         }
         return null;
     }
-    public boolean validateFirstName(String firstName){
-        if(firstName.trim().isEmpty())return false;
+    public boolean checkEmpty(String string){
+        if(string.trim().isEmpty()){
+            return false;
+        }
         return true;
     }
+    public boolean checkEmail(String email){
+       if (!email.matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
+            return false;
+        }
+       return true;
+    }
+
+    public boolean checkPhoneNumber(String phoneNumber){
+        if (!phoneNumber.matches("\\d{10}")) {
+           return false;
+        }
+        return true;
+    }
+
 
 }
